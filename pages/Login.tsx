@@ -10,22 +10,16 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    setIsLoading(true);
 
-    // Simulate network delay
-    setTimeout(() => {
-      if (email === LOGIN_CREDENTIALS.email && password === LOGIN_CREDENTIALS.password) {
-        onLogin();
-      } else {
-        setError('Invalid credentials. Please check your email and password.');
-        setIsLoading(false);
-      }
-    }, 800);
+    if (email === LOGIN_CREDENTIALS.email && password === LOGIN_CREDENTIALS.password) {
+      onLogin();
+    } else {
+      setError('Invalid credentials. Please check your email and password.');
+    }
   };
 
   return (
@@ -86,13 +80,10 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
             <button
               type="submit"
-              disabled={isLoading}
-              className={`w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all ${
-                isLoading ? 'opacity-70 cursor-not-allowed' : ''
-              }`}
+              className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all"
             >
-              {isLoading ? 'Signing In...' : 'Sign In to Dashboard'}
-              {!isLoading && <ArrowRight className="ml-2 h-4 w-4" />}
+              Sign In to Dashboard
+              <ArrowRight className="ml-2 h-4 w-4" />
             </button>
           </form>
 

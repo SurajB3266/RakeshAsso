@@ -40,7 +40,6 @@ const Dashboard: React.FC = () => {
   // Generate Mock Chart Data
   const chartData = useMemo(() => {
     const data = [];
-    const months = 12; // Show approx 1 year view or YTD
     const points = 30; // Data points
     
     // Create a smooth curve from start date to today
